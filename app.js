@@ -1,21 +1,21 @@
-var btn = document.querySelector('button');
-var bitcoinPrice = document.querySelector('#price');
-var currency = 'EUR';
+let btn = document.querySelector('button');
+let bitcoinPrice = document.querySelector('#price');
+let currency = 'USD';
 
 btn.addEventListener('click', changeBitcoinPrice);
 
 function changeBitcoinPrice(){
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function(){
         if(xhr.readyState == 4 && xhr.status == 200){
-            var date = JSON.parse(xhr.responseText);
-            var price = date.bpi[currency].rate;
+            let date = JSON.parse(xhr.responseText);
+            let price = date.bpi[currency].rate;
             bitcoinPrice.innerText = price + ' ' + currency;
        };
     };    
 
-    var url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
+    let url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
     xhr.open('GET', url);
     xhr.send();
 };
